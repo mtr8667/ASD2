@@ -1,0 +1,4 @@
+project,projectType,pName,fName,lName,email,phone,emailOkay,cost,priority,startDate,jobNotes
+CSV project 1,Kitchen,Richter Kitchen,Matthew,Richter,matt@gorichter.com,9085006304,Yes,high,9,2012-5-1,Re-due tile floor and add three new custom cabinets		
+CSV project 2,Addition,Anderson Addition,Chris,Anderson,chris@anderson.com,4075006304,Yes,medium,7,2012-6-1,600 sq ft addition of the family room
+	

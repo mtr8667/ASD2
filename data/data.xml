@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectData>
+	<projects>
+		<project>XML Project 1</project>
+		<projectType>Kitchen</projectType>
+		<pName>Richter Kitchen</pName>
+		<fName>Matthew</fName>
+		<lName>Richter</lName>
+		<email>matt@gorichter.com</email>
+		<phone>9085006304</phone>
+		<emailOkay>Yes</emailOkay>
+		<cost>high</cost>
+		<priority>9</priority>
+		<startDate>2012-5-1</startDate>
+		<jobNotes>Re-due tile floor and add three new custom cabinets</jobNotes>
+	</projects>
+	<projects>
+		<project>XML Project 2</project>
+		<projectType>Addition</projectType>
+		<pName>Anderson Addition</pName>
+		<fName>Chris</fName>
+		<lName>Anderson</lName>
+		<email>chris@anderson.com</email>
+		<phone>4075006304</phone>
+		<emailOkay>Yes</emailOkay>
+		<cost>medium</cost>
+		<priority>7</priority>
+		<startDate>2012-6-1</startDate>
+		<jobNotes>600 sq ft addition of the family room</jobNotes>
+	</projects>
+</projectData>
