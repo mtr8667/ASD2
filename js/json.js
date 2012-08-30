@@ -10,8 +10,6 @@ var json = {
 		"lname": 		["Last Name:", "Richter"],
 		"email":			["Email:", "matt@gorichter.com"],
 		"phone":			["Phone:", "9085006304"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "9"],
 		"startDate"	:	["Start Date:", "2012-5-1"],
 		"jobNotes":		["Job Notes:", "Re-due tile floor and add three new custom cabinets"]
@@ -23,8 +21,6 @@ var json = {
 		"lname": 		["Last Name:", "Anderson"],
 		"email":			["Email:", "chris@anderson.com"],
 		"phone":			["Phone:", "4075006304"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "medium"],
 		"priority":		["Priority:", "7"],
 		"startDate":	["Start Date:", "2012-6-1"],
 		"jobNotes":		["Job Notes:", "600 sq ft addition of the family room"]
@@ -36,8 +32,6 @@ var json = {
 		"lname": 		["Last Name:", "Richter"],
 		"email":			["Email:", "matt@gorichter.com"],
 		"phone":			["Phone:", "9085006304"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "9"],
 		"startDate"	:	["Start Date:", "2012-5-1"],
 		"jobNotes":		["Job Notes:", "Place new face-frame on the vanity and remove bench seat in shower and re-tile"]
@@ -49,8 +43,6 @@ var json = {
 		"lname": 		["Last Name:", "Stokes"],
 		"email":			["Email:", "bryan@SB.com"],
 		"phone":			["Phone:", "9086542727"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "medium"],
 		"priority":		["Priority:", "8"],
 		"startDate"	:	["Start Date:", "2012-7-1"],
 		"jobNotes":		["Job Notes:", "Take off existing two layers and repair any rotten wood"]
@@ -62,8 +54,6 @@ var json = {
 		"lname": 		["Last Name:", "Jones"],
 		"email":			["Email:", "traivs@jones.com"],
 		"phone":			["Phone:", "9088393933"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "low"],
 		"priority":		["Priority:", "4"],
 		"startDate"	:	["Start Date:", "2012-6-1"],
 		"jobNotes":		["Job Notes:", "finish similar to the McKensie job"]
@@ -75,8 +65,6 @@ var json = {
 		"lname": 		["Last Name:", "Trivella"],
 		"email":			["Email:", "ade@trivella.com"],
 		"phone":			["Phone:", "9086372524"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "8"],
 		"startDate"	:	["Start Date:", "2012-5-1"],
 		"jobNotes":		["Job Notes:", "400 square feet off the kitchen, tile floor anderson windows, match exterior"]
@@ -88,8 +76,6 @@ var json = {
 		"lname": 		["Last Name:", "Oraschin"],
 		"email":			["Email:", "dave@oraschin.com"],
 		"phone":			["Phone:", "9086270412"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "10"],
 		"startDate"	:	["Start Date:", "2012-7-1"],
 		"jobNotes":		["Job Notes:", "blow out family room wall and add 600 square foot great room, match exterior"]
@@ -101,8 +87,6 @@ var json = {
 		"lname": 		["Last Name:", "Mantes"],
 		"email":			["Email:", "gerry@mantes.com"],
 		"phone":			["Phone:", "9081232930"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "7"],
 		"startDate"	:	["Start Date:", "2012-7-1"],
 		"jobNotes":		["Job Notes:", "new toilet, bath tub, vanity and shower"]
@@ -114,8 +98,6 @@ var json = {
 		"lname": 		["Last Name:", "Smith"],
 		"email":			["Email:", "john@smith.com"],
 		"phone":			["Phone:", "9082549986"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "low"],
 		"priority":		["Priority:", "6"],
 		"startDate"	:	["Start Date:", "2012-8-1"],
 		"jobNotes":		["Job Notes:", "New shower tile and floor"]
@@ -127,8 +109,6 @@ var json = {
 		"lname": 		["Last Name:", "Roth"],
 		"email":			["Email:", "joe@roth.com"],
 		"phone":			["Phone:", "9085317283"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "6"],
 		"startDate"	:	["Start Date:", "2012-9-1"],
 		"jobNotes":		["Job Notes:", "Roof over existing roof no dumpster required"]
@@ -140,8 +120,6 @@ var json = {
 		"lname": 		["Last Name:", "Stires"],
 		"email":			["Email:", "kim@wfb.com"],
 		"phone":			["Phone:", "9084737272"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "8"],
 		"startDate"	:	["Start Date:", "2012-8-1"],
 		"jobNotes":		["Job Notes:", "Gut the entire bathroom and replace everything"]
@@ -153,8 +131,6 @@ var json = {
 		"lname": 		["Last Name:", "Papio"],
 		"email":			["Email:", "matt@papio.com"],
 		"phone":			["Phone:", "9736473829"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "7"],
 		"startDate"	:	["Start Date:", "2012-6-1"],
 		"jobNotes":		["Job Notes:", "new floor, vanity and bath"]
@@ -166,8 +142,6 @@ var json = {
 		"lname": 		["Last Name:", "Dill"],
 		"email":			["Email:", "james@dill.com"],
 		"phone":			["Phone:", "9732781166"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "5"],
 		"startDate"	:	["Start Date:", "2012-10-1"],
 		"jobNotes":		["Job Notes:", "finish entire basement sheetrock and tile floor with built-ins"]
@@ -179,8 +153,6 @@ var json = {
 		"lname": 		["Last Name:", "Kelly"],
 		"email":			["Email:", "jeff@kelly.com"],
 		"phone":			["Phone:", "9084738383"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "medium"],
 		"priority":		["Priority:", "5"],
 		"startDate"	:	["Start Date:", "2012-11-1"],
 		"jobNotes":		["Job Notes:", "wine closet and sheetrock with cork floor"]
@@ -192,8 +164,6 @@ var json = {
 		"lname": 		["Last Name:", "Richdale"],
 		"email":			["Email:", "john@richdale.com"],
 		"phone":			["Phone:", "9734920098"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "4"],
 		"startDate"	:	["Start Date:", "2012-12-1"],
 		"jobNotes":		["Job Notes:", "gut entire bathroom new everything with built-in tile shower and new vanity"]
@@ -205,8 +175,6 @@ var json = {
 		"lname": 		["Last Name:", "Hollis"],
 		"email":			["Email:", "link@hollis.com"],
 		"phone":			["Phone:", "9085006304"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "medium"],
 		"priority":		["Priority:", "9"],
 		"startDate"	:	["Start Date:", "2012-7-1"],
 		"jobNotes":		["Job Notes:", "Tear off existing roof replace rotten wood + new gutters"]
@@ -218,8 +186,6 @@ var json = {
 		"lname": 		["Last Name:", "Stires"],
 		"email":			["Email:", "pete@stires.com"],
 		"phone":			["Phone:", "9087776253"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "9"],
 		"startDate"	:	["Start Date:", "2012-6-1"],
 		"jobNotes":		["Job Notes:", "all new cabinets conestoga doors and custom island"]
@@ -231,8 +197,6 @@ var json = {
 		"lname": 		["Last Name:", "Mathis"],
 		"email":			["Email:", "mike@mathis.com"],
 		"phone":			["Phone:", "9087223314"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "4"],
 		"startDate"	:	["Start Date:", "2012-11-1"],
 		"jobNotes":		["Job Notes:", "all new cabinets and wine rack and tile floor"]
@@ -244,8 +208,6 @@ var json = {
 		"lname": 		["Last Name:", "Long"],
 		"email":			["Email:", "tom@long.com"],
 		"phone":			["Phone:", "9083764737"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "medium"],
 		"priority":		["Priority:", "7"],
 		"startDate"	:	["Start Date:", "2012-8-1"],
 		"jobNotes":		["Job Notes:", "new doors and paint job"]
@@ -257,8 +219,6 @@ var json = {
 		"lname": 		["Last Name:", "Monica"],
 		"email":			["Email:", "james@monica.com"],
 		"phone":			["Phone:", "9089874232"],
-		"emailOkay":	["Communicate via email:", "Yes"],
-		"cost":			["Price per square foot:", "high"],
 		"priority":		["Priority:", "9"],
 		"startDate"	:	["Start Date:", "2012-6-1"],
 		"jobNotes":		["Job Notes:", "Remove old roof & gutters"]
