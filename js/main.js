@@ -225,13 +225,8 @@ $("#newProject").on('pageinit',function(){
 			autoFillData();
 			
 		}
-//		var makeDiv	= document.createElement("div");
-//		makeDiv.setAttribute("id", "items");
-//		$("#projectData").attr("id","items")
-//		var makeList = document.createElement("ul");
-//		makeDiv.appendChild(makeList);
-//		document.body.appendChild(makeDiv);
-//		$("items").css("display, block");
+
+//	declaring var=list
 		var list = $.find("#projectDataList");
 		for( var i = 0, len=localStorage.length; i<len; i++){
 			var makeLi = $('<li class="singleProjectItem"></li>').appendTo(list);
