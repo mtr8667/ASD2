@@ -3,9 +3,6 @@
 // Project 3
 // May 17, 2012
 
-
-
-
 $("#home").on('pageinit',function(){
 // get JSON
 	$("#getJSON").on("click", function(){
@@ -142,21 +139,7 @@ $("#newProject").on('pageinit',function(){
 		projectform = $( "#projectForm" ),
 		formerrorslink = $("#formerrorslink")
 	;
-function getSelectedRadio(){
-		var radios = $("#projectForm").forms[0].cost;
-		for( var i=0; i < radios.length; i++){
-			if(radios[i].checked){
-			cost = radios[i].value;
-			}
-		}
-	}
-	function getCheckboxValue(){
-		if($("emailOkay").checked){
-			emailOkay	=	$("emailOkay").value;
-		}else{
-			emailOkay 	=	"No"
-		}
-	}	
+
 // Toggle control 
 	function toggleControls(n){
 		switch(n){
@@ -239,21 +222,17 @@ $("#getProjects").on("click", getProjects);
 		$("lname").value 		= item.lname[1];
 		$("email").value 		= item.email[1];
 		$("phone").value 		= item.phone[1];
-
-		if(item.emailOkay[1] == "Yes"){
-			$("emailOkay").attr("checked", "checked");
-		}
 		$("priority").value = item.priority[1];
 		$("startDate").value = item.startDate[1];
 		$("jobNotes").value = item.jobNotes[1];
 		// remove the initial eventListener from the save project button
-		save.removeEventListener("click", saveLocal);
+		$("#editItem").on("click", saveLocal);
 		// change save project buttom value to say edit project button
-		$("saveProject").value = "Edit Project";
+		$("saveProject").val() = "Edit Project";
 		var editSaveProject = $("saveProject");
 		// saving key value in this function as a property of the editSaveProject event 
 		// so we can use that value when we save the edited project
-		editSaveProject.addEventListener("click", validate);
+		$("#editSaveProject").on("click", validate);
 		editSaveProject.key = this.key;
 	}
 	function deleteItem(){
@@ -283,15 +262,13 @@ $("#saveProject").on("click", saveLocal);
 		if(!key){
 			var 	id 						= Math.floor(Math.random()*10000001);
 		}else{
-			//set the id to the existing key we're editing so the data will be modified and we'll save over the original data
-			//this key has been passed along from the editSaveProject eventListener to the validate function then passed here
-			// into storeLocal function
+//set the id to the existing key we're editing so the data will be modified and we'll save over the original data
+//this key has been passed along from the editSaveProject eventListener to the validate function then passed here
+// into storeLocal function
 			id = key;
 		}
-		// get all the form field values and store them in an object.
-		// the object properties contain an array with the form label and input value.
-//		getSelectedRadio();
-		getCheckboxValue();
+// get all the form field values and store them in an object.
+// the object properties contain an array with the form label and input value.
 		var	item 						= {};
 				item.projecttype		= ["Project Type:", $("#projecttype").val()];
 				item.jobname 			= ["Project Name:", $("#jobname").val()];
@@ -306,32 +283,8 @@ $("#saveProject").on("click", saveLocal);
 		localStorage.setItem(id, JSON.stringify(item));	
 		alert("Your project has been saved successfully!");			
 	} 
-
-
-
-
 });
-// Just above is the JavaScript I used for the Gold MIU app - below is my attempt at jQuery ... here we go
-// function for document ready - this will wrap our entire code.
-//$(function(){	
-// Find the value of a selected radial button ,
-	// 
-	// I believe these are now being handled by the plugin
-	
 
-
-
-/*
-	// Set link & submit Click Events 
- 	var showProjectsLink = ge("showProjectsLink");
- 	showProjectsLink.addEventListener("click", getProjects);
- 	var clearProjectsLink = ge('clearProjectsLink');
- 	clearProjectsLink.addEventListener("click", deleteProject); 
- 	var save = ge("saveProject");
- 	save.addEventListener("click", validate);
-*/	
-		
-	
 	
 	
 
