@@ -1,7 +1,7 @@
-// Matthew RIchter 
-// MIU - Full Sail University
-// Project 3
-// May 17, 2012
+// Matthew Richter 
+// ASD - Full Sail University
+// Project 1
+// August 30, 2012
 
 $("#home").on('pageinit',function(){
 // get JSON
