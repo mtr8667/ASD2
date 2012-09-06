@@ -17,7 +17,7 @@ $("#home").on('pageinit',function(){
 					console.log(response);
 					var sp = response.projectData[i];
 					$(""+
-						"<div>"+  
+						"<li>"+  
 							"<h2>" + sp.projects +"</h2>"+
 							"<p>" + sp.project +"</p>"+
 							"<p>" + sp.pname +"</p>"+
@@ -30,7 +30,7 @@ $("#home").on('pageinit',function(){
 							"<p>" + sp.priority +"</p>"+
 							"<p>" + sp.startDate +"</p>"+
 							"<p>" + sp.jobNotes +"</p>"+
-						"</div>"
+						"</li>"
 					).appendTo("#dataList");
 					$("#dataList").listview('refresh');
 				};
@@ -64,7 +64,7 @@ $("#home").on('pageinit',function(){
 				var startDate = $(this).find("startDate").text();
 				var jobNotes = $(this).find("jobNotes").text();
 			$(""+
-				"<div>"+  
+				"<li>"+  
 					"<h2>" + project +"</h2>"+
 					"<p>" + projectType +"</p>"+
 					"<p>" + pName +"</p>"+
@@ -77,7 +77,7 @@ $("#home").on('pageinit',function(){
 					"<p>" + priority +"</p>"+
 					"<p>" + startDate +"</p>"+
 					"<p>" + jobNotes +"</p>"+
-				"</div>"
+				"</li>"
 			).appendTo("#dataList");
 			$("#dataList").listview('refresh');
 		});
@@ -114,7 +114,7 @@ $("#home").on('pageinit',function(){
 					var thisProjectData = lines[t];	
 				
 				$(""+
-					"<div>"+  
+					"<li>"+  
 						"<h2>" + thisProjectData[0] +"</h2>"+
 						"<p>" + thisProjectData[1] +"</p>"+
 						"<p>" + thisProjectData[2] +"</p>"+
@@ -125,7 +125,7 @@ $("#home").on('pageinit',function(){
 						"<p>" + thisProjectData[7] +"</p>"+
 						"<p>" + thisProjectData[8] +"</p>"+
 						"<p>" + thisProjectData[9] +"</p>"+
-					"</div>"
+					"</li>"
 				).appendTo("#dataList");
 				$("#dataList").listview('refresh');
 				}
