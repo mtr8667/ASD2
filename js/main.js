@@ -7,7 +7,7 @@ $("#home").on('pageinit',function(){
 // get JSON
 	$("#getJSON").on("click", function(){
 		console.log("#getJSON");
-		$("#dataHolder").empty();
+		$("#dataList").empty();
 		$.ajax({
 			url: 		"data/data.json",
 			type:		"GET",
@@ -31,7 +31,8 @@ $("#home").on('pageinit',function(){
 							"<p>" + sp.startDate +"</p>"+
 							"<p>" + sp.jobNotes +"</p>"+
 						"</div>"
-					).appendTo("#dataHolder");
+					).appendTo("#dataList");
+					$("#dataList").listview('refresh');
 				};
 			},
 			error: function(error){
@@ -42,7 +43,7 @@ $("#home").on('pageinit',function(){
 // get XML
 	$("#getXML").on("click", function(){
 		console.log("#getXML");
-		$("#dataHolder").empty();
+		$("#dataList").empty();
 		$.ajax({
 			url: 		"data/data.xml",
 			type:		"GET",
@@ -77,7 +78,8 @@ $("#home").on('pageinit',function(){
 					"<p>" + startDate +"</p>"+
 					"<p>" + jobNotes +"</p>"+
 				"</div>"
-			).appendTo("#dataHolder");
+			).appendTo("#dataList");
+			$("#dataList").listview('refresh');
 		});
 	}
 });
@@ -85,7 +87,7 @@ $("#home").on('pageinit',function(){
 // get CSV
 	$("#getCSV").on("click", function(){
 		console.log("#getCSV");
-		$("#dataHolder").empty();
+		$("#dataList").empty();
 		$.ajax({
 			url: 		"data/data.csv",
 			type:		"GET",
@@ -123,10 +125,9 @@ $("#home").on('pageinit',function(){
 						"<p>" + thisProjectData[7] +"</p>"+
 						"<p>" + thisProjectData[8] +"</p>"+
 						"<p>" + thisProjectData[9] +"</p>"+
-						"<p>" + thisProjectData[10] +"</p>"+
-						"<p>" + thisProjectData[11] +"</p>"+
 					"</div>"
-				).appendTo("#dataHolder");
+				).appendTo("#dataList");
+				$("#dataList").listview('refresh');
 				}
 			}
 		});
@@ -164,6 +165,33 @@ $("#newProject").on('pageinit',function(){
 					return false;
 		}
 	}
+$("#saveProject").on("click", saveLocal);
+	function saveLocal(key){
+		if(!key){
+			var 	id 						= Math.floor(Math.random()*10000001);
+		}else{
+//set the id to the existing key we're editing so the data will be modified and we'll save over the original data
+//this key has been passed along from the editSaveProject eventListener to the validate function then passed here
+// into storeLocal function
+			id = key;
+		}
+// get all the form field values and store them in an object.
+// the object properties contain an array with the form label and input value.
+		var	item 						= {};
+				item.projecttype		= ["Project Type:", $("#projecttype").val()];
+				item.jobname 			= ["Project Name:", $("#jobname").val()];
+				item.firstname 			= ["First Name:", $("#firstname").val()];
+				item.lastname 			= ["Last Name:", $("#lastname").val()];
+				item.email 				= ["Email:", $("#email").val()];
+				item.phone 				= ["Phone:", $("#phone").val()];						
+				item.priority 			= ["Priority", $("#priority").val()];
+				item.date				= ["Start Date", $("#date").val()];
+				item.notes 				= ["Job Notes", $("#notes").val()];
+		// Save data into local storage : use stringify to convert our object to a string.
+		localStorage.setItem(id, JSON.stringify(item));	
+		alert("Your project has been saved successfully!");	
+		console.log(item);		
+	} 
 // the key is only generated when we are editing a project so if there is no key its a new project
 // Write data from localStorage to the browser
 $("#getProjects").on("click", getProjects);
@@ -175,6 +203,7 @@ $("#getProjects").on("click", getProjects);
 		}
 //	declaring var=list
 		var list = $.find("#projectDataList");
+		$("#projectData").attr("id", "items");
 		for( var i = 0, len=localStorage.length; i<len; i++){
 			var makeLi = $('<li class="singleProjectItem"></li>').appendTo(list);
 			var linksLi	= $('<li class="singleProjectLink"></li>').appendTo(list);
@@ -196,16 +225,16 @@ $("#getProjects").on("click", getProjects);
 		for(var n in json){
 			var 	id 	= Math.floor(Math.random()*10000001);
 			localStorage.setItem(id, JSON.stringify(json[n]));
+			console.log(json);
 		}
 	}
 // This function is going to create the link/buttons for each project when accessed
 // make item links/buttons for each project
 	function makeItemLinks(key, linksLi){
-		var editLink = $('<a href="#" data-role="button data-mini="true" data-inline="true">Edit Project</a>').appendTo(linksLi);
-		var deleteLink = $('<a href="#">Delete Project</a>').appendTo(linksLi);
+		var editLink = $(linksLi).append('<a href="#">Edit Project</a>');
 		editLink.key = key;
 		$("#editLink").on("click", editItem);
-		$("linksLi").append("editLink");
+		var deleteLink = $(linksLi).append('<a href="#">Delete Project</a>');
 		deleteLink.key = key;
 		$("deleteLink").on("click", deleteItem);
 	}
@@ -257,32 +286,7 @@ $("#deleteProject").on("click", deleteProject);
 		}
 	}
 // the key is only generated when we are editing a project so if there is no key its a new project
-$("#saveProject").on("click", saveLocal);
-	function saveLocal(key){
-		if(!key){
-			var 	id 						= Math.floor(Math.random()*10000001);
-		}else{
-//set the id to the existing key we're editing so the data will be modified and we'll save over the original data
-//this key has been passed along from the editSaveProject eventListener to the validate function then passed here
-// into storeLocal function
-			id = key;
-		}
-// get all the form field values and store them in an object.
-// the object properties contain an array with the form label and input value.
-		var	item 						= {};
-				item.projecttype		= ["Project Type:", $("#projecttype").val()];
-				item.jobname 			= ["Project Name:", $("#jobname").val()];
-				item.firstname 			= ["First Name:", $("#firstname").val()];
-				item.lastname 			= ["Last Name:", $("#lastname").val()];
-				item.email 				= ["Email:", $("#email").val()];
-				item.phone 				= ["Phone:", $("#phone").val()];						
-				item.priority 			= ["Priority", $("#priority").val()];
-				item.date				= ["Start Date", $("#date").val()];
-				item.notes 				= ["Job Notes", $("#notes").val()];
-		// Save data into local storage : use stringify to convert our object to a string.
-		localStorage.setItem(id, JSON.stringify(item));	
-		alert("Your project has been saved successfully!");			
-	} 
+
 });
 
 	

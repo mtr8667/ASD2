@@ -8,8 +8,6 @@
 		<lName>Richter</lName>
 		<email>matt@gorichter.com</email>
 		<phone>9085006304</phone>
-		<emailOkay>Yes</emailOkay>
-		<cost>high</cost>
 		<priority>9</priority>
 		<startDate>2012-5-1</startDate>
 		<jobNotes>Re-due tile floor and add three new custom cabinets</jobNotes>
@@ -22,10 +20,44 @@
 		<lName>Anderson</lName>
 		<email>chris@anderson.com</email>
 		<phone>4075006304</phone>
-		<emailOkay>Yes</emailOkay>
-		<cost>medium</cost>
 		<priority>7</priority>
 		<startDate>2012-6-1</startDate>
 		<jobNotes>600 sq ft addition of the family room</jobNotes>
+	</projects>
+	<projects>
+		<project>XML Project 3</project>
+		<projectType>Lavatory</projectType>
+		<pName>Richter Lavatory</pName>
+		<fName>Matthew</fName>
+		<lName>Richter</lName>
+		<email>matt@gorichter.com</email>
+		<phone>9085006304</phone>
+		<priority>9</priority>
+		<startDate>2012-5-1</startDate>
+		<jobNotes>Place new face-frame on the vanity and remove bench seat in shower and re-tile</jobNotes>
+	</projects>
+	<projects>
+		<project>XML Project 4</project>
+		<projectType>Roof</projectType>
+		<pName>Stokes Roof</pName>
+		<fName>Bryan</fName>
+		<lName>Stokes</lName>
+		<email>bryan@SB.com</email>
+		<phone>9086542727</phone>
+		<priority>8</priority>
+		<startDate>2012-7-1</startDate>
+		<jobNotes>Take off existing two layers and repair any rotten wood</jobNotes>
+	</projects>
+	<projects>
+		<project>XML Project 5</project>
+		<projectType>Basement</projectType>
+		<pName>Jones Basement</pName>
+		<fName>Travis</fName>
+		<lName>Jones</lName>
+		<email>traivs@jones.com</email>
+		<phone>9088393933</phone>
+		<priority>4</priority>
+		<startDate>2012-6-1</startDate>
+		<jobNotes>finish similar to the McKensie job</jobNotes>
 	</projects>
 </projectData>
