@@ -1,29 +1,100 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My New CouchApp</title>
-    <link rel="stylesheet" href="style/main.css" type="text/css">
-  </head>
-  <body>
-    <div id="account"></div>
+<!-- Matthew Richter, Project 4 for ASD 1207 Full Sail University  -->
+<!-- July 25, 1212 -->
 
-    <h1>Generated CouchApp</h1>
+<!-- HTML TAG --> 
+<html lang="en">
+<head>
+	<!-- Document Title  -->
+	<title>BBTmobi.com - Job Genie</title>
+	<meta charset="utf-8">
+	
+	<title>Mobile Site Template</title>
+	<meta name="description" content="A BBTmobi.com app to help contractors be more profitable and organized." />
+	<meta name="keywords" content="construction, planning, organization, more profits, guide" />
+	<!-- allows search engine robots to index our page in a search engine and follow (continue reading through) links on our page. -->
+	<meta name= "robots" content="index, follow" />
 
-    <div id="profile"></div>
-    <div id="items"></div>
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable = no">
+	<meta http-equiv="cleartype" content="on">
 
-    <div id="sidebar">
-      <p>Edit welcome message.</p>
-      <p>Ideas: You could easily turn this into a photo sharing app, or a grocery list, or a chat room.</p>
-    </div>
-  </body>
-  <script src="vendor/couchapp/loader.js"></script>
-  <script type="text/javascript" charset="utf-8">
-    $.couch.app(function(app) {
-      $("#account").evently("account", app);
-      $("#profile").evently("profile", app);
-      $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
-      $("#items").evently("items", app);
-    });
-  </script>
+	
+	<!-- Mobile IE needs ClearType for smoothing fonts -->
+
+	
+	<!-- StyleSheets under here -->
+
+
+	<link href= "style.css" rel= "stylesheet" type="text/css"/>
+	
+	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+	<link rel="stylesheet"
+          href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css"/>
+    <script type="text/javascript"
+        src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript"
+        src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<script src="jquery.couch.js"></script>
+	<script src="modernizr.custom.min.js"></script>
+
+</head>
+
+<body>
+	
+<!-- home page -->
+	<div data-role="page" id="home" data-transition="fade">
+		
+		<!-- home page header -->
+		<div data-role="header" data-position="fixed" data-theme="a" data-id="header">
+			<h1>Job Genie</h1>
+		</div>
+		<div>
+			<center>
+				<img src="logob.png"/>
+			</center>
+		</div>
+		<div>
+			<a href="addProject.html" rel="external" data-ajax="false" data-transition="fade">
+				<div data-role="fieldcontain" data-inset="true">
+					<center>	
+						<img src="cta3.jpg"/>
+					</center>
+				</div>	
+			</a>	
+		</div>
+
+		<!-- Catagory List -->
+		<div data-role="content">
+			<ul id="ulList" data-role="listview" data-inset="true" data-mini="true">	
+			</ul>
+		</div>
+		
+		<div data-role="fieldcontain">
+			<div>
+					<center>
+						<p><small id="footer"> &copy; 2012 BBTmobi.com All Rights Reserved.</small></p>
+					</center>
+			</div>
+		</div>
+	
+		<!-- Home page Footer -->
+		<div data-role="footer" data-position="fixed" data-id="footer">
+				<div data-role="navbar">
+					<ul id="footerUl">
+						<li><a href="#home"  data-transition="slide">home</a></li>
+					</ul>			
+				</div>
+		</div>
+	
+	</div>
+	
+	<!-- JavaScript under here -->
+	<script type="text/javascript" src="jquery.validate.min.js"></script>	
+	<script src="main.js" type="text/javascript"></script>
+	<script src="json.js" type="text/javascript"></script>
+
+</body>
 </html>

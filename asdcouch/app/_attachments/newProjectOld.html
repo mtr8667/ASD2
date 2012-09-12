@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- Matthew Richter, Project 4 for ASD 1207 Full Sail University  -->
+<!-- July 25, 1212 -->
+
+<!-- HTML TAG --> 
+<html lang="en">
+<head>
+	<!-- Document Title  -->
+	<title>Detail</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	
+<!-- new project form page -->
+	<div data-role="page" id="newProject"  data-add-back-btn="true" data-transition="fade">
+		
+		<!-- new project page Header -->
+		<div data-role="header" data-position="fixed" data-id="header">
+			<h1>New Project</h1>
+		</div>
+		<div>
+			<center>
+				<img src="logob.png"/>
+			</center>
+		</div>
+		<div data-role="content">
+			
+		</div>
+		<!-- Form -->
+	
+			
+		<form action="#" method="post" id="projectForm">
+				
+
+				
+				<!-- Input Job Name -->
+				<div data-role="content" >
+					<label for="jobname" >Job Name</label>
+					<input type="text" name="jobname" id="jobname" placeholder="customer last name + description" class="required" data-mini="true"/>
+				</div>	
+				
+				<!-- Input First Name -->
+				<div data-role="content" >	
+					<label for="firstname">First Name</label>
+					<input type="text" name="firstname" id="firstname" class="required" data-mini="true"/>
+				</div>	
+				
+				<!-- Input Last Name -->
+				<div data-role="content" >	
+					<label for="lastname">Last Name</label>
+					<input type="text" name="lastname" id="lastname" class="required" data-mini="true"/>
+				</div>
+				
+				
+				<!-- Input Email -->
+				<div data-role="content" >	
+					<label for="email">Email</label>
+					<input type="text" name="email" id="email" class="required email" data-mini="true"/>
+				</div>	
+				
+				<!-- Input Phone -->
+				<div data-role="content" >	
+					<label for="phone">Phone</label>
+					<input type="text" name="phone" id="phone" class="required phone" maxlength="14" data-mini="true"/>
+				</div>
+				
+
+				
+				<!-- Reset - submit buttons -->
+				<div data-role="content">
+					<center>
+						<input type="submit" name="save" id="saveProject" value="Save Project" data-mini="true" data-inline="true" data-theme="e" />
+						<input type="reset" name="reset" id="reset" value="Clear Form" data-mini="true" data-inline="true" data-mini="true"/>
+					</center>	
+				</div>		
+				
+				<!-- link to error dialog -->
+				<div>
+					<a href="#showerrors" id="formerrorslink" data-rel="dialog" data-transition="fade" >Open Errors</a>
+				</div>
+		</form>
+			
+
+			
+		<div>
+			<div>
+					<center>
+						<p><small id="footer"> &copy; 2012 BBTmobi.com All Rights Reserved.</small></p>
+					</center>
+			</div>
+		</div>
+		<!-- project-type-error-message fade up-->
+		<div data-role="dialog" id="showerrors" data-theme="e">
+			<div data-role="header" data-position="fixed" >
+				<h1>Required fields missing!</h1>
+			</div>
+		</div>
+		
+		<!-- new project page Footer -->
+		<div data-role="footer" data-position="fixed" data-id="footer">
+			
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" data-transition="slide">home</a></li>
+				</ul>			
+			</div>
+		
+		</div>
+	</div>	
+<!-- newProject end -->	
+	
+<!-- JavaScript under here -->
+	
+</body>
+</html>
