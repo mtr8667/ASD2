@@ -225,35 +225,36 @@ $("#getProjects").on("click", getProjects);
 		for(var n in json){
 			var 	id 	= Math.floor(Math.random()*10000001);
 			localStorage.setItem(id, JSON.stringify(json[n]));
-			console.log(json);
+			console.log(id);
 		}
 	}
 // This function is going to create the link/buttons for each project when accessed
 // make item links/buttons for each project
 	function makeItemLinks(key, linksLi){
-		var editLink = $(linksLi).append('<a href="#">Edit Project</a>');
-		editLink.key = key;
-		$("#editLink").on("click", editItem);
-		var deleteLink = $(linksLi).append('<a href="#">Delete Project</a>');
-		deleteLink.key = key;
-		$("deleteLink").on("click", deleteItem);
+		var editLink = $("<a>").attr("href", "#").text("edit").css("display", "inline").attr("data-theme", "e").on("click", editItem).appendTo(linksLi);
+//		editLink.key = key;
+//		$("#editLink").on("click", editItem);
+		var deleteLink = $("<a>").attr("href", "#").text("delete").css("display", "inline").attr("data-theme", "e").on("click", deleteItem).appendTo(linksLi);		
+//		deleteLink.key = key;
+//		$("deleteLink").on("click", deleteItem);
 	}
 // function to allow us to pull a project from local storage and edit an item
 	function editItem(){
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
+		console.log(value);
 		// show the add project form
 		toggleControls("off");
 		// pull in the data of the current project from local storage
-		$("project").value 	= item.project[1];
-		$("pname").value 	= item.pname[1];
-		$("fname").value 	= item.fname[1];
-		$("lname").value 		= item.lname[1];
-		$("email").value 		= item.email[1];
-		$("phone").value 		= item.phone[1];
-		$("priority").value = item.priority[1];
-		$("startDate").value = item.startDate[1];
-		$("jobNotes").value = item.jobNotes[1];
+		$("#projecttype").val() 	= item.project[1];
+		$("#jobname").val() 	= item.pname[1];
+		$("#firstname").val() 	= item.fname[1];
+		$("#lastname").val()		= item.lname[1];
+		$("#email").val() 		= item.email[1];
+		$("#phone").val() 		= item.phone[1];
+		$("#priority").val() = item.priority[1];
+		$("#date").val() = item.startDate[1];
+		$("#notes").val() = item.jobNotes[1];
 		// remove the initial eventListener from the save project button
 		$("#editItem").on("click", saveLocal);
 		// change save project buttom value to say edit project button
