@@ -48,16 +48,19 @@ $(function(){
 
 //$("#home").on('pageinit',function(){
 $("#home").live("pageshow", function() {
-	$.couch.db("asdproject").view("app/projects", {
-		success: function(data) {
+	$("#dataHolder").empty();
+		$.ajax({
+			"url": 		"_view/projects",
+	    	"dataType":	"json",
+	    	"success": function(data) {
 			console.log(data);
-			$("#dataHolder").empty();
+			
 			$.each(data.rows, function(index, value){
 				var item = (value.value || value.doc);
 				$("#dataHolder").append(
 					$("<li>").append(
 							$("<a>")
-								.attr("href", "jobs.html?job=" + item.projectType ) 
+								.attr("href", "jobs.html?job=" + item._id ) 
 								.text(item.projectName)
 					)	
 				);
@@ -66,139 +69,6 @@ $("#home").live("pageshow", function() {
 		}
 	});
 
-
-// get JSON
-	$("#getJSON").on("click", function(){
-		console.log("#getJSON");
-		$("#dataHolder").empty();
-		$.ajax({
-			url: 		"data.json",
-			type:		"GET",
-			dataType:	"json",
-			success:	function(response){
-				for (var i=0, j=response.projectData.length; i<j; i++){
-					console.log(response);
-					var sp = response.projectData[i];
-					$(""+
-						"<li>"+  
-							"<h2>" + sp.projects +"</h2>"+
-							"<p>" + sp.project +"</p>"+
-							"<p>" + sp.pname +"</p>"+
-							"<p>" + sp.fname +"</p>"+
-							"<p>" + sp.lname +"</p>"+
-							"<p>" + sp.email +"</p>"+
-							"<p>" + sp.phone +"</p>"+
-							"<p>" + sp.emailOkay +"</p>"+
-							"<p>" + sp.cost +"</p>"+
-							"<p>" + sp.priority +"</p>"+
-							"<p>" + sp.startDate +"</p>"+
-							"<p>" + sp.jobNotes +"</p>"+
-						"</li>"
-					).appendTo("#dataHolder");
-				};
-				$("#dataHolder").listview("refresh");
-			},
-			error: function(error){
-				console.log(error);
-			}
-		});
-});
-// get XML
-	$("#getXML").on("click", function(){
-		console.log("#getXML");
-		$("#dataHolder").empty();
-		$.ajax({
-			url: 		"data.xml",
-			type:		"GET",
-			dataType:	"xml",
-			success:	function(xml){
-			console.log(xml);			
-			$(xml).find("projects").each(function(){
-				var project = $(this).find("project").text();
-				var projectType = $(this).find("projectType").text();
-				var pName = $(this).find("pName").text();
-				var fName = $(this).find("fName").text();
-				var lName = $(this).find("lName").text();
-				var email = $(this).find("email").text();
-				var phone = $(this).find("phone").text();
-				var emailOkay = $(this).find("emailOkay").text();
-				var cost = $(this).find("cost").text();
-				var priority = $(this).find("priority").text();
-				var startDate = $(this).find("startDate").text();
-				var jobNotes = $(this).find("jobNotes").text();
-			$(""+
-				"<li>"+  
-					"<h2>" + project +"</h2>"+
-					"<p>" + projectType +"</p>"+
-					"<p>" + pName +"</p>"+
-					"<p>" + fName +"</p>"+
-					"<p>" + lName +"</p>"+
-					"<p>" + email +"</p>"+
-					"<p>" + phone +"</p>"+
-					"<p>" + emailOkay +"</p>"+
-					"<p>" + cost +"</p>"+
-					"<p>" + priority +"</p>"+
-					"<p>" + startDate +"</p>"+
-					"<p>" + jobNotes +"</p>"+
-				"</li>"
-			).appendTo("#dataHolder");
-		});
-			$("#dataHolder").listview("refresh");
-	}
-});
-});
-// get CSV
-	$("#getCSV").on("click", function(){
-		console.log("#getCSV");
-		$("#dataHolder").empty();
-		$.ajax({
-			url: 		"data.csv",
-			type:		"GET",
-			dataType:	"text",
-			success:	function(text){
-			console.log(text);
-// \r\n  return cariage then new line then new line
-				var textLines = text.split(/\r\n|\n/);
-// var headers is the value headers - project, project type , first name etc... I'm setting up headers to just pull out the headers from the array
-				var headers = textLines[0].split(",");
-				
-				var lines = [];	
-				for (var i=1; i<textLines.length;i++){
-					var text = textLines[i].split(",");
-					if (text.length == headers.length){
-						var projectData = [];						
-						for (var j=0; j<headers.length;j++){
-							projectData.push(text[j]);
-						}
-						lines.push(projectData);
-					} 
-				}
-				for (var t=0; t<lines.length;t++){
-					var thisProjectData = lines[t];	
-				
-				$(""+
-					"<li>"+  
-						"<h2>" + thisProjectData[0] +"</h2>"+
-						"<p>" + thisProjectData[1] +"</p>"+
-						"<p>" + thisProjectData[2] +"</p>"+
-						"<p>" + thisProjectData[3] +"</p>"+
-						"<p>" + thisProjectData[4] +"</p>"+
-						"<p>" + thisProjectData[5] +"</p>"+
-						"<p>" + thisProjectData[6] +"</p>"+
-						"<p>" + thisProjectData[7] +"</p>"+
-						"<p>" + thisProjectData[8] +"</p>"+
-						"<p>" + thisProjectData[9] +"</p>"+
-						"<p>" + thisProjectData[10] +"</p>"+
-						"<p>" + thisProjectData[11] +"</p>"+
-					"</li>"
-				).appendTo("#dataHolder");
-				}
-				$("#dataHolder").listview("refresh");
-			}
-		});
-		return false;
-// I used http://stackoverflow.com/questions/7431268/how-read-data-from-csv-file-using-javascript to help with the $("#getCSV")
-});
 // end on initial $(home)
 //});
 
@@ -720,68 +590,7 @@ $("#deleteProject").on("click", deleteProject);
 
 });
 
-/*
-$("#feedback").on('pageinit',function(){
 
-});
-
-$("#jobreporting").on('pageinit',function(){
-
-});
-
-$("#underconstruction").on('pageinit',function(){
-
-});
-
-$("#additions").on('pageinit',function(){
-
-});
-
-*/
-
-// Just above is the JavaScript I used for the Gold MIU app - below is my attempt at jQuery ... here we go
-// function for document ready - this will wrap our entire code.
-
-//$(function(){
-	
-// Find the value of a selected radial button ,
-	// 
-	// I believe these are now being handled by the plugin
-
-/*
-	function getSelectedRadio(){
-		var radios = document.forms[0].cost;
-		for( var i=0; i < radios.length; i++){
-			if(radios[i].checked){
-			cost = radios[i].value;
-			}
-		}
-	}
-	function getCheckboxValue(){
-		if($("emailOkay").checked){
-			emailOkay	=	$("emailOkay").value;
-		}else{
-			emailOkay 	=	"No"
-		}
-	}	
-
-*/
-
-
-
-/*
-
-	// Set link & submit Click Events 
-
- 	var showProjectsLink = ge("showProjectsLink");
- 	showProjectsLink.addEventListener("click", getProjects);
- 	var clearProjectsLink = ge('clearProjectsLink');
- 	clearProjectsLink.addEventListener("click", deleteProject); 
- 	var save = ge("saveProject");
- 	save.addEventListener("click", validate);
-
-*/	
-		
 	
 	
 	
