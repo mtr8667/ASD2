@@ -60,7 +60,8 @@ $("#home").live("pageshow", function() {
 				$("#dataHolder").append(
 					$("<li>").append(
 							$("<a>")
-								.attr("href", "jobs.html?job=" + item._id ) 
+								.attr("href", "/asdprojecttwo/_all_docs?include_docs=true&key=" + '"' + item._id + '"' ) 
+								.attr("id", "detail")
 								.text(item.projectName)
 					)	
 				);
@@ -71,7 +72,48 @@ $("#home").live("pageshow", function() {
 
 // end on initial $(home)
 //});
+$('#project').on('click', function () {   
+	$("#couchcontactsList").empty();
+		var detail = $("a").attr("href");
+		console.log(detail);
+		$.ajax({
+			   "url": 		detail,
+			  	"dataType":	"json",
+			   	"success": function(data) {
+		    		console.log(data);
+			    		
+		    		$.each(data.rows, function(index, project){
+//		    			var projectType = project.doc.projectType;
+		    			var projectName = project.doc.projectName;
+		    			var firstName = project.doc.firstName;
+			    	   	var lastName = project.doc.lastName;
+			    	   	var email = project.doc.email;
+			    	   	var phone = project.doc.phone;
+			    	   	var emailBest = project.doc.emailBest;
+			        	var cost = project.doc.cost;
+			   	    	var priority = project.doc.priority;
+			   	    	var startDate = project.doc.startDate;
+			   	    	var jobNotes = project.doc.jobNotes;
 
+			    	    $("#couchcontactsList").append(
+			    				$("<li>").attr("data-role", 
+			    						"collapsible").attr("data-collapsed", "true")
+			    	    						.append($("<h3>").text(projectName))
+			    	    						.append($("<p>").text(firstName))
+			    	    						.append($("<p>").text(lastName))
+			    	    						.append($("<p>").text(email))
+			    	    						.append($("<p>").text(phone))
+			    	    						.append($("<p>").text(emailBest))
+			    	    						.append($("<p>").text(cost))
+			    	    						.append($("<p>").text(priority))
+			    	    						.append($("<p>").text(startDate))
+			    	    						.append($("<p>").text(jobNotes))
+			    	    				);
+			    		});
+			    		$("#couchcontactsList").listview("refresh");
+			    	}
+			    });
+});
 // ajax call to the couchDB files containing the additions value displaying in the #additionsList UL on the additions page I've changed this to try and create a collapsible list 
 $('#additions').on('pageinit', function () {   
 	$("#additionsList").empty();
