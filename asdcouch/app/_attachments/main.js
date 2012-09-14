@@ -10,15 +10,14 @@ $("#home").live("pageshow", function() {
 			"url": 		"_view/projects",
 	    	"dataType":	"json",
 	    	"success": function(data) {
-			console.log(data);
+//	    		console.log(data);
 			
 			$.each(data.rows, function(index, value){
 				var item = (value.value || value.doc);
 				$("#dataHolder").append(
 					$("<li>").append(
 							$("<a>")
-								.attr('href', '/asdprojecttwo/_all_docs?include_docs=true&key=' + '"' + item._id + '"' ) 
-								.attr("id", "project")
+								.attr('href', "detail.html?_id=" + item._id) 
 								.text(item.projectName)
 					)	
 				);
@@ -29,48 +28,91 @@ $("#home").live("pageshow", function() {
 
 // end on initial $(home)
 //});
-$('#project').on('click', function () {   
-	$("#couchcontactsList").empty();
-		var detail = $("a").attr("href");
-		console.log(detail);
-		$.ajax({
-			   "url": 		detail,
-			  	"dataType":	"json",
-			   	"success": function(data) {
-		    		console.log(data);
-			    		
-		    		$.each(data.rows, function(index, project){
-//		    			var projectType = project.doc.projectType;
-		    			var projectName = project.doc.projectName;
-		    			var firstName = project.doc.firstName;
-			    	   	var lastName = project.doc.lastName;
-			    	   	var email = project.doc.email;
-			    	   	var phone = project.doc.phone;
-			    	   	var emailBest = project.doc.emailBest;
-			        	var cost = project.doc.cost;
-			   	    	var priority = project.doc.priority;
-			   	    	var startDate = project.doc.startDate;
-			   	    	var jobNotes = project.doc.jobNotes;
+var urlVars = function() {
+	var urlData = $($.mobile.activePage).data("url");
+	var urlParts = urlData.split("?");
+	// foo?a=1&b=2&c=3 etc...is my case its 10
+			var urlPairs = urlParts[1].split("&");
+			var urlValues = {};
+			for (var pair in urlPairs) {
+				var keyValue = urlPairs[pair].split("=");
+				var key = decodeURIComponent(keyValue[0]);
+				var value = decodeURIComponent(keyValue[1]);
+				urlValues[key] = value;
+			}
+				return urlValues;	
+	};
 
-			    	    $("#couchcontactsList").append(
-			    				$("<li>").attr("data-role", 
-			    						"collapsible").attr("data-collapsed", "true")
-			    	    						.append($("<h3>").text(projectName))
-			    	    						.append($("<p>").text(firstName))
-			    	    						.append($("<p>").text(lastName))
-			    	    						.append($("<p>").text(email))
-			    	    						.append($("<p>").text(phone))
-			    	    						.append($("<p>").text(emailBest))
-			    	    						.append($("<p>").text(cost))
-			    	    						.append($("<p>").text(priority))
-			    	    						.append($("<p>").text(startDate))
-			    	    						.append($("<p>").text(jobNotes))
-			    	    				);
-			    		});
-			    		$("#couchcontactsList").listview("refresh");
-			    	}
-			    });
-});
+  
+$("#detail").live("pageshow", function() {
+	var id = urlVars()["_id"];
+	console.log(id);
+	$.ajax({
+		"url":		"_view/projects?key=" + '"' + id + '"' ,
+		"dataType":	"json",
+		"success": function(data) {
+			console.log(data);
+				
+			$("#detailList").empty();
+			$.each(data.rows, function(index, id){
+				var _id =			id.value._id;
+				var _rev =		id.value._rev; 
+				var projectName = id.value.projectName;
+		    	var firstName = id.value.firstName;
+		    	var lastName = id.value.lastName;
+		    	var email = id.value.email;
+		    	var phone = id.value.phone;
+		    	var emailBest = id.value.emailBest;
+		    	var cost = id.value.cost;
+		    	var priority = id.value.priority;
+		    	var startDate = id.value.startDate;
+		    	var jobNotes = id.value.jobNotes;
+
+		    	   $("#detailList").append(
+		    	    		$("<li>")
+		    	    				.append($("<h3>").text(projectName))
+		    	    				.append($("<p>").text(_id))
+		    	    				.append($("<p>").text(_rev))
+		    	    				.append($("<p>").text(firstName))
+		    	    				.append($("<p>").text(lastName))
+		    	    				.append($("<p>").text(email))
+		    	    				.append($("<p>").text(phone))
+		    	    				.append($("<p>").text(emailBest))
+		    	    				.append($("<p>").text(cost))
+		    	    				.append($("<p>").text(priority))
+		    	    				.append($("<p>").text(startDate))
+		    	    				.append($("<p>").text(jobNotes))
+ 
+		    	    );
+			});
+			$("#detailList").listview("refresh");
+
+			$("#editDeleteButtons").empty();
+			$("#editDeleteButtons").append(
+					$("<li>").append(
+						$("<a>")	
+						.attr('href', 'edit.html?_id=' + id  ) 
+						.attr('id', 'editProject')
+						.text("Edit Project")
+					)
+			);
+			$("#editDeleteButtons").append(
+					$("<li>").append(
+						$("<a>")	
+						.attr('href', 'edit.html?_id=' + id ) 
+						.attr('id', 'deleteProject')
+						.text("Delete Project")
+								
+					)
+			);
+			console.log(id);
+			$("#editDeleteButtons").listview("refresh");
+
+		}
+	});
+//			var urlData = $($.mobile.activePage).data("url");
+			
+});  
 // ajax call to the couchDB files containing the additions value displaying in the #additionsList UL on the additions page I've changed this to try and create a collapsible list 
 $('#additions').on('pageinit', function () {   
 	$("#additionsList").empty();
