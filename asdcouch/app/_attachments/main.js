@@ -1,4 +1,4 @@
-// Matthew RIchter 
+// Matthew Richter 
 // ASD - Full Sail University
 // Project 4
 // July 22, 2012
@@ -48,7 +48,7 @@ $(function(){
 
 //$("#home").on('pageinit',function(){
 $("#home").on("pageinit", function() {
-	$.couch.db("asdproject").view("app/sections", {
+	$.couch.db("asdprojecttwo").view("app/sections", {
 		success: function(data) {
 			console.log(data);
 			$("#ulList").empty();
@@ -65,23 +65,7 @@ $("#home").on("pageinit", function() {
 			$("#ulList").listview("refresh");
 		}
 	});
-	$.couch.db("asdproject").view("app/all", {
-		success: function(data) {
-			console.log(data);
-			$("#ulLista").empty();
-			$.each(data.rows, function(index, value){
-				var item = (value.value || value.doc);
-				$("#ulLista").append(
-					$("<li>").append(
-							$("<a>")
-								.attr("href", "sections.html?section=" + item.title ) 
-								.text(item.name)
-					)	
-				);
-			});
-			$("#ulLista").listview("refresh");
-		}
-	});
+
 
 // end on initial $(home)
 });
@@ -104,7 +88,7 @@ var urlVars = function() {
 $("#sections").live("pageshow", function() {
 	var section = urlVars()["section"];
 //	console.log(section);
-	$.couch.db("asdproject").view("app/" + section, {
+	$.couch.db("asdprojecttwo").view("app/" + section, {
 		success: function(data) {
 			console.log(data);
 			$("#sectionList").empty();
@@ -127,7 +111,7 @@ $("#sections").live("pageshow", function() {
 $("#detail").live("pageshow", function() {
 	var id = urlVars()["_id"];
 	console.log(id);
-	$.couch.db("asdproject").view('app/projects?key="' + id + '"', {
+	$.couch.db("asdprojecttwo").view('app/projects?key="' + id + '"', {
 		success: function(data) {
 			console.log(data);
 		
@@ -212,11 +196,11 @@ $("#edit").live("pageshow", function() {
 //$("#editProject").on("click", function(){
 	var ide = urlVars()["_id"];
 	console.log(ide);
-	$.couch.db("asdproject").view('app/projects?key="' + ide + '"', {
+	$.couch.db("asdprojecttwo").openDoc('' + ide , {
 		success: function(data) {
 			console.log(data);
 		
-	//		$("#projectForm").empty();
+	//		$("#editForm").empty();
 
 			$.each(data.rows, function(index, ide){
 				var _id =			ide.value._id;
