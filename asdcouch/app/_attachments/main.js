@@ -65,8 +65,23 @@ $("#home").on("pageinit", function() {
 			$("#ulList").listview("refresh");
 		}
 	});
-
-
+	$.couch.db("asdproject").view("app/all", {
+		success: function(data) {
+			console.log(data);
+			$("#ulLista").empty();
+			$.each(data.rows, function(index, value){
+				var item = (value.value || value.doc);
+				$("#ulLista").append(
+					$("<li>").append(
+							$("<a>")
+								.attr("href", "sections.html?section=" + item.title ) 
+								.text(item.name)
+					)	
+				);
+			});
+			$("#ulLista").listview("refresh");
+		}
+	});
 
 // end on initial $(home)
 });
@@ -98,7 +113,7 @@ $("#sections").live("pageshow", function() {
 				$("#sectionList").append(
 					$("<li>").append(
 							$("<a>")
-								.attr("href", "detail.html?_id=" + item._id) 
+								.attr("href", "detail.html?_id=" + item._id + "&" + "_rev=" + item._rev) 
 								.text(item.projectName)
 					)	
 				);
@@ -237,6 +252,258 @@ $("#edit").live("pageshow", function() {
 			
 		}
 	});	
-//});
+
 });
+$("#project").live('pageshow',function(){
+
+	var element = $(document),
+		projectform = $("#projectForm"),
+		formerrorslink = $("#formerrorslink")
+	;
+
+// Toggle control 
+	function toggleControls(n){
+		switch(n){
+			case "on":
+					$("#projectForm").css("display", "none");
+					$("#deleteProjects").css("display", "inline");
+					$("#newProjectLink").css("display", "inline");
+					$("#getProjects").css("display", "none");
+					$("#footer").css("display", "none");
+					break;
+			case "off":
+					$("#projectForm").css("display", "block");
+					$("#deleteProjects").css("display", "inline");
+					$("#getProjects").css("display", "inline");
+					$("#newProjectLink").css("display", "none");
+					$("#items").css("display", "none");
+					break;
+			default:
+					return false;
+		}
+}
+
+
+// Write data from localStorage to the browser
+$("#getProjects").on("click", getProjects);
+	function getProjects(){
+		toggleControls("on");
+		if(localStorage.length === 0 ){
+			alert("There is no data in local storage so default data has been added.");
+			autoFillData();
+			
+		}
+//		var makeDiv	= document.createElement("div");
+//		makeDiv.setAttribute("id", "items");
+//		$("#projectData").attr("id","items")
+//		var makeList = document.createElement("ul");
+//		makeDiv.appendChild(makeList);
+//		document.body.appendChild(makeDiv);
+//		$("items").css("display, block");
+		var list = $.find("#projectDataList");
+		for( var i = 0, len=localStorage.length; i<len; i++){
+			var makeLi = $('<li class="singleProjectItem"></li>').appendTo(list);
+//			var linksLi	= $("li");
+//			makeList.appendChild(makeLi);
+//			$(makeLi).appendTo("#items");
+			var key = localStorage.key(i);
+			var value = localStorage.getItem(key);
+			// Convert the string from localStorage value back to an object using JSON.parse
+			var obj = JSON.parse(value);
+//			var makeSubList = makeList.appendChild(makeLi);
+//			makeLi.appendChild(makeSubList);
+//			getImage(obj.project[1], makeSubList);
+/*
+			for(var n in obj){
+				var makeSubLi = document.createElement("li");
+				makeSubList.appendChild(makeSubLi);
+				var optSubText = obj[n][0]+" "+obj[n][1];
+				makeSubLi.innerHTML = optSubText;
+				makeSubList.appendChild(linksLi);
+				}
+*/
+			for(var n in obj){
+				$('<p>'+obj[n][0]+obj[n][1]+'</p>').appendTo(makeLi);
+//				console.log(obj[n][0]);
+			}	
+				// create links/buttons (edit & delete) for each project in local storage
+//				makeItemLinks(localStorage.key(i), linksLi); 
+//				console.log(obj);
+				
+		}
+			$("#projectDataList").listview('refresh');	
+}
 //});
+		
+// Auto populate local storage from json
+	// actual json object data for this to work will come from json.js which is loaded from HTML page
+	// the main.js and json.js files can see eachothers variables - that's why we can loop through json in the main.js file
+	function autoFillData(){
+		for(var n in json){
+			var 	id 	= Math.floor(Math.random()*10000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+			
+		}
+	}
+
+// This function is going to create the link/buttons for each project when accessed
+	// make item links/buttons for each project
+
+	function makeItemLinks(key, linksLi){
+		var editLink = $('<a href="#">Edit Project</a>').appendTo(linksLi);
+		editLink.attr();
+		var deleteLink = $('<a href="#">Delete Project</a>').appendTo(linksLi);
+
+//		var editLink = $("a");
+//		editLink.href = "#";
+		editLink.key = key;
+//		var editText = "Edit Project";
+		$("editLink").on("click", editItem);
+//		$("editLink").html("editText");
+		$("linksLi").append("editLink");
+		// add line break
+//		var breakTag = $("br");
+		$("linksLi").append("breakTag");
+//		var deleteLink = $("a");
+//		deleteLink.href = "#";
+		deleteLink.key = key;
+//		var deleteText = "Delete Project";
+		$("deleteLink").on("click", deleteItem);
+//		$("deleteLink").html("deleteText");
+//		$("linksLi").append("deleteLink");
+	}
+
+// function to allow us to pull a project from local storage and edit an item
+	function editItem(){
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
+		// show the add project form
+		toggleControls("off");
+		// pull in the data of the current project from local storage
+		$("project").value 	= item.project[1];
+		$("pname").value 	= item.pname[1];
+		$("fname").value 	= item.fname[1];
+		$("lname").value 		= item.lname[1];
+		$("email").value 		= item.email[1];
+		$("phone").value 		= item.phone[1];
+		var radios = document.forms[0].cost;
+		for(var i=0; i<radios.length; i++){
+			if(radios[i].value == "low" && item.cost[1] == "low"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "medium" && item.cost[1] == "medium"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "high" && item.cost[1] == "high"){
+				radios[i].setAttribute("checked", "checked");
+			}
+		}
+		if(item.emailOkay[1] == "Yes"){
+			$("emailOkay").attr("checked", "checked");
+		}
+		$("priority").value = item.priority[1];
+		$("startDate").value = item.startDate[1];
+		$("jobNotes").value = item.jobNotes[1];
+		// remove the initial eventListener from the save project button
+		save.removeEventListener("click", saveLocal);
+		// change save project buttom value to say edit project button
+		$("saveProject").value = "Edit Project";
+		var editSaveProject = $("saveProject");
+		// saving key value in this function as a property of the editSaveProject event 
+		// so we can use that value when we save the edited project
+		editSaveProject.addEventListener("click", validate);
+		editSaveProject.key = this.key;
+	}
+
+// 
+	function deleteItem(){
+		var ask = confirm("Are you sure you want to delete this project?");
+		if(ask){
+			localStorage.removeItem(this.key);
+			window.location.reload();
+		}else{
+			alert("Project was not deleted.");
+		}
+	}
+
+// Get the project image for current project being displayed
+	function getImage(projectName, makeSubList){
+		var imageLi = $("li");
+		$("makeSubList").append("imageLi");
+		var newImg = $("img");
+		var setSrc = $("newImg").attr("src", "images/" + projectName + ".png");
+		$("imageLi").append("newImg");
+	}
+
+
+$("#deleteProject").on("click", deleteProject);
+// delete project functions
+	function deleteProject(){
+		if(localStorage.length === 0){
+			alert("There are no projects to delete.")
+		}else{
+			localStorage.clear();
+			alert("All projects have been deleted!");
+			window.location.reload();
+			return false;
+		}
+	}
+ 
+// Validate function for the form
+	projectform.validate({
+		invalidHandler: function(form, validator){
+			// this bring up the pop up error dialog
+			formerrorslink.click();
+			var html = ' ';
+			for(var key in validator.submitted){
+				var label = $('label[for^="'+ key +'"]').not('[generated]');
+				var legend = label.closest('fieldset').find('.ui-controlgroup-label');
+				var fieldName = legend.length ? legend.text() : label.text();
+				html += '<li>' + fieldName + '</li>';
+			};
+			$('#showerrors ul').html(html);
+		},
+		submitHandler: function(){
+			var 	data = projectform.serializeArray();
+			parseProjectForm(data);
+			
+		}
+	});
+	var parseProjectForm = function(data){
+// uses form data here 
+	//console.log(data);
+	//localStorage.setItem(key, JSON.stringify(item));	
+	$("parseProjectForm").data(data);
+		alert("Your project has been saved successfully!");		
+	};
+// the key is only generated when we are editing a project so if there is no key its a new project
+	function saveLocal(key){
+		if(!key){
+			var 	id 						= Math.floor(Math.random()*10000001);
+		}else{
+			//set the id to the existing key we're editing so the data will be modified and we'll save over the original data
+			//this key has been passed along from the editSaveProject eventListener to the validate function then passed here
+			// into storeLocal function
+			id = key;
+		}
+		// get all the form field values and store them in an object.
+		// the object properties contain an array with the form label and input value.
+		getSelectedRadio();
+		getCheckboxValue();
+		var	item 					= {};
+				item.project		= ["Project Type:", $("project").value];
+				item.pname 			= ["Project Name:", $("pname").value];
+				item.fname 			= ["First Name:", $("fname").value];
+				item.lname 			= ["Last Name:", $("lname").value];
+				item.email 			= ["Email:", $("email").value];
+				item.phone 			= ["Phone:", $("phone").value];			
+				item.emailOkay 		= ["Communicate Via email:", emailOkay];
+				item.cost			= ["Price per sq ft.", cost];			
+				item.priority 		= ["Priority", $("priority").value];
+				item.startDate		= ["Start Date", $("startDate").value];
+				item.jobNotes 		= ["Job Notes", $("jobNotes").value];
+		// Save data into local storage : use stringify to convert our object to a string.
+		localStorage.setItem(id, JSON.stringify(item));	
+		alert("Your project has been saved successfully!");			
+	} 
+
+
+});
