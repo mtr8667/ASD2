@@ -198,7 +198,7 @@ $("#edit").live("pageshow", function() {
 	console.log(ide);
 	$.couch.db("asd").openDoc( ide , {
 		success: function(data) {
-			console.log(data);
+			console.log(data.email);
 
 			$("#_id").val(data._id);
 			$("#projectType").val(data.projectType);
@@ -206,10 +206,9 @@ $("#edit").live("pageshow", function() {
 			$("#firstName").val(data.firstName);
 			$("#lastName").val(data.lastName);
 			$("#startDate").val(data.startDate);
-			if(data.emailBest === "Yes"){
-			      $("#emailBest").attr("checked", "checked");
-			    }
-			
+			$("#phone").val(data.phone);
+			$("#email").val(data.email);
+			$("#priority").val(data.priority);
 			$("#jobNotes").val(data.jobNotes);
 /*		
 //	$("#projectForm").empty();
