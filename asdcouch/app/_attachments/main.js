@@ -196,13 +196,25 @@ $("#edit").live("pageshow", function() {
 //$("#editProject").on("click", function(){
 	var ide = urlVars()["_id"];
 	console.log(ide);
-	$.couch.db("asdprojecttwo").view('app/projects?key="' + ide + '"', {
+	$.couch.db("asdprojecttwo").openDoc( ide , {
 		success: function(data) {
 			console.log(data);
-		
-	$("#projectForm").empty();
 
-			$.each(data.rows, function(index, ide){
+			$("#_id").val(data._id);
+			$("#projectType").val(data.projectType);
+			$("#projectName").val(data.projectName);
+			$("#firstName").val(data.firstName);
+			$("#lastName").val(data.lastName);
+			$("#startDate").val(data.startDate);
+			if(data.emailBest === "Yes"){
+			      $("#emailBest").attr("checked", "checked");
+			    }
+			
+			$("#jobNotes").val(data.jobNotes);
+/*		
+//	$("#projectForm").empty();
+
+//			$.each(data.rows, function(index, ide){
 				var _id =			ide.value._id;
 		   	    var _rev =		ide.value._rev; 
 		   	    var projectName = ide.value.projectName;
@@ -218,7 +230,7 @@ $("#edit").live("pageshow", function() {
     			$("email").text(email);
     			$("phone").text(phone);
     	    	
- /*
+
     	    		$("#editForm")
 //    	    						.append($("<p>").text(_id))
 //    	    						.append($("<p>").text(_rev))
@@ -227,10 +239,11 @@ $("#edit").live("pageshow", function() {
     	    						.append($("lastname").text(lastName))
     	    						.append($("email").text(email))
     	    						.append($("phone").text(phone))
-  */  	    				
+  	    				
     	    				
     	    		
     		});
+    		 */ 
 //			$("#editForm").listview("refresh");
 
 			

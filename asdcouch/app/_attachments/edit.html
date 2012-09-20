@@ -29,44 +29,91 @@
 		</div>
 		<!-- Form -->
 			
-		<form action="#" id="editForm">
-			
+		<form action="#"  id="projectForm">
+				<!-- Input Project ID -->
+				<div data-role="fieldcontain" >
+					<label for="_id" >Project ID</label>
+					<input type="text" name="_id" id="_id" class="required" data-mini="true"/>
+				</div>	
+				
+				<div data-role="fieldcontain" >
+					
+					<!-- Input Drop down - Project Type -->
+					<label for="projectType" id="select">Project type</label>
+					<select id="projectType" class="required" data-native-menu="false" data-mini="true">
+						<option data-place-holder="true"  value>Please select a project type.</option>	
+						<option value="addition">Addition</option>
+						<option value="basement">Basement</option>
+						<option value="kitchen">Kitchen</option>
+						<option value="lavatory">Lavatory</option>
+						<option value="roof">Roof</option>	
+					</select>
+				
+				</div>
+				
 				<!-- Input Job Name -->
-				<div data-role="content" data-mini="true">
-					<label for="pname" >Job Name</label>
-					<input type="text" name="pname" id="pname" placeholder="customer last name + description" class="required" data-mini="true"/>
+				<div data-role="fieldcontain" >
+					<label for="projectName" >Project Name</label>
+					<input type="text" name="projectName" id="projectName" placeholder="customer last name + description" class="required" data-mini="true"/>
 				</div>	
 				
 				<!-- Input First Name -->
-				<div data-role="content" data-mini="true">	
-					<label for="fname">First Name</label>
-					<input type="text" name="fname" id="fname" class="required" data-mini="true"/>
+				<div data-role="fieldcontain" >	
+					<label for="firstName">First Name</label>
+					<input type="text" name="firstName" id="firstName" class="required" data-mini="true"/>
 				</div>	
 				
 				<!-- Input Last Name -->
-				<div data-role="content" data-mini="true" >	
-					<label for="lname">Last Name</label>
-					<input type="text" name="lname" id="lname" class="required" data-mini="true"/>
+				<div data-role="fieldcontain" >	
+					<label for="lastName">Last Name</label>
+					<input type="text" name="lastName" id="lastName" class="required" data-mini="true"/>
 				</div>
 				
-				
 				<!-- Input Email -->
-				<div data-role="content" data-mini="true">	
+				<div data-role="fieldcontain" >	
 					<label for="email">Email</label>
-					<input type="text" name="email" id="email" class="required email" data-mini="true"/>
+					<input type="text" name="email" id="email" class="required" data-mini="true"/>
 				</div>	
 				
 				<!-- Input Phone -->
-				<div data-role="content" data-mini="true">	
+				<div data-role="fieldcontain" >	
 					<label for="phone">Phone</label>
-					<input type="text" name="phone" id="phone" class="required phone" maxlength="14" data-mini="true"/>
+					<input type="text" name="phone" id="phone" class="required" maxlength="14" data-mini="true"/>
 				</div>
-
+				
+				<!-- Input Date -->
+				<div data-role="fieldcontain">	
+					<label for="startDate">Date</label>
+					<input type="text" name="startDate" id="startDate" class="required" placeholder="mm/dd/yyyy"  data-mini="true"/>			
+				</div>
+				
+				<!-- Input Email Okay? -->
+				<div data-role="fieldcontain" >
+					<fieldset data-role="controlgroup">
+						<legend>Email Best?</legend>
+						<input type="checkbox" value="emailokay" checked="true" name="emailBest" id="emailBest" data-mini="true"/>
+						<label for="emailBest">Yes</label>
+						<small>Select yes if you would like to have us communicate via email.</small>
+					</fieldset>
+				</div>
+				
+				<!-- Input Project Priority -->
+				<div data-role="fieldcontain">
+					<label for="priority">Project Priority</label>
+					<input type="range" name="priority" id="priority" value="5" min="0" max="10" data-mini="true"/>
+				</div>
+				
+				
+				<!-- Input Job Notes -->
+				<div data-role="fieldcontain" >	
+					<label for="jobNotes" >Job Notes</label>
+					<textarea  placeholder="Enter specific customer requests here." id="jobNotes" data-mini="true"></textarea>
+				</div>
 				
 				<!-- Reset - submit buttons -->
-				<div data-role="content" data-mini="true">
+				<div data-role="fieldcontain">
 					<center>
-						<input type="submit" name="save" id="editProject" value="Edit Project" data-mini="true" data-inline="true" data-theme="e" />
+						<input type="submit" name="save" id="saveProject" value="Save Project" data-mini="true" data-inline="true" data-theme="e" />
 						<input type="reset" name="reset" id="reset" value="Clear Form" data-mini="true" data-inline="true" data-mini="true"/>
 					</center>	
 				</div>		
