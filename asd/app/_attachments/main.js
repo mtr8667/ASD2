@@ -229,10 +229,35 @@ $("#delete").live("pageshow", function() {
 				$("#jobNotes").val(data.jobNotes);
 				$("#emailBest").val(data.emailBest);
 			
+				var getId = $("#_id").val(data._id);
+				var getRev = $("#_rev").val(data._rev);
+				console.log(getId);
+				console.log(getRev);
 			}
 		});	
 		alert("Pressing delete again will permanently delete this record!");
 });
+function saveLocal(){
+	
+	getSelectedRadio();
+	getCheckboxValue();
+	var	item 					= {};
+			item.project		= ["Project Type:", $("project").value];
+			item.pname 			= ["Project Name:", $("pname").value];
+			item.fname 			= ["First Name:", $("fname").value];
+			item.lname 			= ["Last Name:", $("lname").value];
+			item.email 			= ["Email:", $("email").value];
+			item.phone 			= ["Phone:", $("phone").value];			
+			item.emailOkay 		= ["Communicate Via email:", emailOkay];
+			item.cost			= ["Price per sq ft.", cost];			
+			item.priority 		= ["Priority", $("priority").value];
+			item.startDate		= ["Start Date", $("startDate").value];
+			item.jobNotes 		= ["Job Notes", $("jobNotes").value];	
+	alert("Your project has been saved successfully!");			
 
+
+
+
+} 
 });
 
