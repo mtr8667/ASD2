@@ -68,7 +68,9 @@ $("#home").on("pageinit", function() {
 
 
 // end on initial $(home)
-});
+
+//$("#saveProject").on("click", function() {
+//});
 
 var urlVars = function() {
 	var urlData = $($.mobile.activePage).data("url");
@@ -144,23 +146,7 @@ $("#detail").live("pageshow", function() {
     	    						.append($("<p>").text(priority))
     	    						.append($("<p>").text(startDate))
     	    						.append($("<p>").text(jobNotes))
-/*    	    			
-    	    		)
-    	    				.append($("<li>").append(
-    	    						$("<a>")	
-    	    							.attr('href', 'edit.html?_id=' + id  ) 
-    	    								.attr('id', 'editProject')
-    	    									.text("Edit Project"))
-    	    						)
-    	    				.append($("<li>").append(
-    	    						$("<a>")	
-    	    							.attr('href', 'edit.html?_id=' + id ) 
-    	    							.attr('id', 'deleteProject')
-    	    							.text("Delete Project"))
-    	    						
-    	    						);
-    	    				
-*/  
+
     	    		);
 			});
 			$("#detailList").listview("refresh");
@@ -177,7 +163,7 @@ $("#detail").live("pageshow", function() {
 			$("#editDeleteButtons").append(
 					$("<li>").append(
 						$("<a>")	
-						.attr('href', 'edit.html?_id=' + id ) 
+						.attr('href', 'delete.html?_id=' + id ) 
 						.attr('id', 'deleteProject')
 						.text("Delete Project")
 						
@@ -198,9 +184,10 @@ $("#edit").live("pageshow", function() {
 	console.log(ide);
 	$.couch.db("asd").openDoc( ide , {
 		success: function(data) {
-			console.log(data.email);
+			console.log(data);
 
 			$("#_id").val(data._id);
+			$("#_rev").val(data._rev);
 			$("#projectType").val(data.projectType);
 			$("#projectName").val(data.projectName);
 			$("#firstName").val(data.firstName);
@@ -209,45 +196,43 @@ $("#edit").live("pageshow", function() {
 			$("#phone").val(data.phone);
 			$("#email").val(data.email);
 			$("#priority").val(data.priority);
+			$("#cost").val(data.cost);
 			$("#jobNotes").val(data.jobNotes);
-/*		
-//	$("#projectForm").empty();
-
-//			$.each(data.rows, function(index, ide){
-				var _id =			ide.value._id;
-		   	    var _rev =		ide.value._rev; 
-		   	    var projectName = ide.value.projectName;
-    	    	var firstName = ide.value.firstName;
-    	    	var lastName = ide.value.lastName;
-    	    	var email = ide.value.email;
-    	    	var phone = ide.value.phone;
-    	    	$("#editForm")
-    	    	
-    	    	$("pname").text(projectName);
-    			$("fname").text(firstName);
-    			$("lname").text(lastName);
-    			$("email").text(email);
-    			$("phone").text(phone);
-    	    	
-
-    	    		$("#editForm")
-//    	    						.append($("<p>").text(_id))
-//    	    						.append($("<p>").text(_rev))
-    	    						.append($("jobname").text(projectName))
-    	    						.append($("firstname").text(firstName))
-    	    						.append($("lastname").text(lastName))
-    	    						.append($("email").text(email))
-    	    						.append($("phone").text(phone))
-  	    				
-    	    				
-    	    		
-    		});
-    		 */ 
-//			$("#editForm").listview("refresh");
-
-			
+			$("#emailBest").val(data.emailBest);
+		
 		}
-	});	
+	});
+
+
+	
+	
+});
+
+$("#delete").live("pageshow", function() {
+		var ide = urlVars()["_id"];
+		console.log(ide);
+		$.couch.db("asd").openDoc( ide , {
+			success: function(data) {
+				console.log(data);
+
+				$("#_id").val(data._id);
+				$("#_rev").val(data._rev);
+				$("#projectType").val(data.projectType);
+				$("#projectName").val(data.projectName);
+				$("#firstName").val(data.firstName);
+				$("#lastName").val(data.lastName);
+				$("#startDate").val(data.startDate);
+				$("#phone").val(data.phone);
+				$("#email").val(data.email);
+				$("#priority").val(data.priority);
+				$("#cost").val(data.cost);
+				$("#jobNotes").val(data.jobNotes);
+				$("#emailBest").val(data.emailBest);
+			
+			}
+		});	
+		alert("Pressing delete again will permanently delete this record!");
+});
 
 });
 
